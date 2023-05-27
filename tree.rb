@@ -23,11 +23,22 @@ class Tree
     tree_node
   end
 
+  def insert(value, root = @root)
+    return Node.new(value) if root.nil?
+
+    if value == root.data
+      root.data
+    elsif value < root.data
+      root.left = insert(value, root.left)
+    else
+      root.right = insert(value, root.right)
+    end
+    root
+  end
+
   def pretty_print(node = @root, prefix = '', is_left = true) # rubocop:disable Style/OptionalBooleanParameter
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
   end
 end
-
-
