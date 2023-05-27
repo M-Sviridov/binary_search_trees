@@ -13,6 +13,8 @@ class Node
   end
 
   def <=>(other)
+    return nil unless other.instance_of?(Node)
+
     data <=> other.data
   end
 end
