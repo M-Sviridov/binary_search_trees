@@ -42,3 +42,9 @@ p tree.level_order_rec
 # iterative level order
 tree.level_order { |node| puts node.data unless node.nil? }
 p tree.level_order
+tree.inorder { |node| puts node unless node.nil? }
+p tree.inorder
+tree.preorder { |node| puts node unless node.nil? }
+p tree.preorder
+tree.postorder { |node| puts node unless node.nil? }
+p tree.postorder
