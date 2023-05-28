@@ -2,7 +2,7 @@
 
 require './node'
 
-# class representing a node in a binary search tree data structure
+# class representing a Tree in a binary search tree data structure
 class Tree
   attr_accessor :root
 
@@ -154,6 +154,13 @@ class Tree
       array << node.data
     end
     array
+  end
+
+  def height(node)
+    # return nil if node.nil?
+    return -1 if node.nil?
+
+    [height(node.left), height(node.right)].max + 1
   end
 
   def pretty_print(node = @root, prefix = '', is_left = true) # rubocop:disable Style/OptionalBooleanParameter
