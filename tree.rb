@@ -36,24 +36,30 @@ class Tree
     root
   end
 
-  def delete(value, root = @root)
-    return root if root.nil?
+  def delete(value, node = @root) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+    return node if node.nil?
 
-    if value < root.data
-      root.left = delete(value, root.left)
-    elsif root.data < value
-      root.right = delete(value, root.right)
+    if value < node.data
+      node.left = delete(value, node.left)
+    elsif node.data < value
+      node.right = delete(value, node.right)
     else
-      return root.right if root.left.nil?
-      return root.left if root.right.nil?
+      # delete node with one or no child
+      return node.right if node.left.nil?
+      return node.left if node.right.nil?
 
-      current_node = root
-      next_node = current_node.right
-      next_node = next_node.left until next_node.left.nil?
-      delete(next_node.data, current_node)
-      current_node.data = next_node.data
+      # delete node with two children
+      delete_node_two_children(node)
     end
-    root
+    node
+  end
+
+  def delete_node_two_children(node)
+    current_node = node
+    next_node = current_node.right
+    next_node = next_node.left until next_node.left.nil?
+    delete(next_node.data, current_node)
+    current_node.data = next_node.data
   end
 
   def pretty_print(node = @root, prefix = '', is_left = true) # rubocop:disable Style/OptionalBooleanParameter
