@@ -162,6 +162,16 @@ class Tree
     [height(node.left), height(node.right)].max + 1
   end
 
+  def depth(target, node = root, current_depth = 0)
+    return current_depth if node == target
+
+    if target.data < node.data
+      depth(target, node.left, current_depth + 1)
+    elsif node.data < target.data
+      depth(target, node.right, current_depth + 1)
+    end
+  end
+
   def pretty_print(node = @root, prefix = '', is_left = true) # rubocop:disable Style/OptionalBooleanParameter
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
