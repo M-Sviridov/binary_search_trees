@@ -55,10 +55,17 @@ class Tree
   end
 
   def delete_node_two_children(node)
+    smallest_node = smallest_child_right_subtree(node)
+    temp = smallest_node.data
+    delete(smallest_node.data, node)
+    node.data = temp
+    node
+  end
+
+  def smallest_child_right_subtree(node)
     next_node = node.right
     next_node = next_node.left until next_node.left.nil?
-    delete(next_node.data, node)
-    node.data = next_node.data
+    next_node
   end
 
   def find(value, node = @root)
