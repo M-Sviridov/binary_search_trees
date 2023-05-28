@@ -27,3 +27,9 @@ tree.pretty_print
 tree.delete(424)
 puts 'After deleting 424:'
 tree.pretty_print
+tree.delete(32)
+puts 'After deleting 32:'
+tree.pretty_print
+tree.delete(50)
+puts 'After deleting 50:'
+tree.pretty_print
