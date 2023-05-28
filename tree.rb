@@ -73,9 +73,9 @@ class Tree
     return node if node.data == value
 
     if value < node.data
-      node.left = find(value, node.left)
+      find(value, node.left)
     else
-      node.right = find(value, node.right)
+      find(value, node.right)
     end
   end
 
@@ -157,7 +157,6 @@ class Tree
   end
 
   def height(node)
-    # return nil if node.nil?
     return -1 if node.nil?
 
     [height(node.left), height(node.right)].max + 1
