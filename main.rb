@@ -37,14 +37,22 @@ tree.delete(5)
 puts 'After deleting 5:'
 tree.pretty_print
 # recursive level order
+puts 'Recursive level order: '
 tree.level_order_rec { |node| puts node.data unless node.nil? }
 p tree.level_order_rec
+puts 'Iterative level order: '
 # iterative level order
 tree.level_order { |node| puts node.data unless node.nil? }
 p tree.level_order
+puts 'Inorder traversal: '
 tree.inorder { |node| puts node unless node.nil? }
 p tree.inorder
+puts 'Preorder traversal: '
 tree.preorder { |node| puts node unless node.nil? }
 p tree.preorder
+puts 'Postorder traversal: '
 tree.postorder { |node| puts node unless node.nil? }
 p tree.postorder
+node = tree.find(100)
+# p node
+puts tree.height(node)
