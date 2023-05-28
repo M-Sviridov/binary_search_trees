@@ -55,11 +55,10 @@ class Tree
   end
 
   def delete_node_two_children(node)
-    current_node = node
-    next_node = current_node.right
+    next_node = node.right
     next_node = next_node.left until next_node.left.nil?
-    delete(next_node.data, current_node)
-    current_node.data = next_node.data
+    delete(next_node.data, node)
+    node.data = next_node.data
   end
 
   def pretty_print(node = @root, prefix = '', is_left = true) # rubocop:disable Style/OptionalBooleanParameter
