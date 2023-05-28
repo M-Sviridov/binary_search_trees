@@ -79,16 +79,35 @@ class Tree
     end
   end
 
-  def level_order(node = @root)
+  def level_order(node = @root) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     return if node.nil?
 
     queue = [node]
+    array = []
     until queue.empty?
       current_node = queue.first
       queue << current_node.left unless current_node.left.nil?
       queue << current_node.right unless current_node.right.nil?
       queue.shift
-      yield(current_node)
+      if block_given?
+        yield(current_node)
+      else
+        array << current_node.data
+      end
+    end
+    array
+  end
+
+  def level_order_rec(queue = [], node = @root, array = [], &block) # rubocop:disable Metrics/AbcSize
+    return array if node.nil?
+
+    queue << node.left unless node.left.nil?
+    queue << node.right unless node.right.nil?
+    if block_given?
+      yield(node)
+      level_order_rec(queue, queue.shift, &block)
+    else
+      level_order_rec(queue, queue.shift, array << node.data)
     end
   end
 
