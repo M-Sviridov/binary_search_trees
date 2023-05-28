@@ -36,5 +36,9 @@ tree.pretty_print
 tree.delete(5)
 puts 'After deleting 5:'
 tree.pretty_print
-puts tree.find(12)
-p tree.find(0)
+# recursive level order
+tree.level_order_rec { |node| puts node.data unless node.nil? }
+p tree.level_order_rec
+# iterative level order
+tree.level_order { |node| puts node.data unless node.nil? }
+p tree.level_order
