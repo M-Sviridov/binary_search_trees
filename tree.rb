@@ -37,27 +37,21 @@ class Tree
   end
 
   def delete(value, root = @root)
-    # 3 cases:
-    # - delete a node that is a 'leaf'
-    #   - just remove the node from the tree
-    # - delete a node that has only one child
-    #   - replace the node by the child node (the entire object)
-    # - delete a node that has two children
-    #   - look at its right child
-    #     - from this right child, look its left child until left child is nil
-    #     - replace the node to be delete by the last left child of the right child of that node
     return root if root.nil?
 
     if value < root.data
       root.left = delete(value, root.left)
     elsif root.data < value
       root.right = delete(value, root.right)
-    elsif root.left.nil? && root.right.nil?
-      root = nil
-    elsif root.left.nil?
-      root = root.right
-    elsif root.right.nil?
-      root = root.left
+    else
+      return root.right if root.left.nil?
+      return root.left if root.right.nil?
+
+      current_node = root
+      next_node = current_node.right
+      next_node = next_node.left until next_node.left.nil?
+      delete(next_node.data, current_node)
+      current_node.data = next_node.data
     end
     root
   end
