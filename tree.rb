@@ -111,6 +111,51 @@ class Tree
     end
   end
 
+  def inorder(node = @root, array = [], &block) # rubocop:disable Metrics/MethodLength
+    return if node.nil?
+
+    if block_given?
+      inorder(node.left, &block)
+      yield(node.data)
+      inorder(node.right, &block)
+    else
+      inorder(node.left, array)
+      array << node.data
+      inorder(node.right, array)
+    end
+    array
+  end
+
+  def preorder(node = @root, array = [], &block) # rubocop:disable Metrics/MethodLength
+    return if node.nil?
+
+    if block_given?
+      yield(node.data)
+      preorder(node.left, &block)
+      preorder(node.right, &block)
+    else
+      array << node.data
+      preorder(node.left, array)
+      preorder(node.right, array)
+    end
+    array
+  end
+
+  def postorder(node = @root, array = [], &block) # rubocop:disable Metrics/MethodLength
+    return if node.nil?
+
+    if block_given?
+      postorder(node.left, &block)
+      postorder(node.right, &block)
+      yield(node.data)
+    else
+      postorder(node.left, array)
+      postorder(node.right, array)
+      array << node.data
+    end
+    array
+  end
+
   def pretty_print(node = @root, prefix = '', is_left = true) # rubocop:disable Style/OptionalBooleanParameter
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
