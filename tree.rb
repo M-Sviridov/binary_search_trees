@@ -85,14 +85,14 @@ class Tree
     queue = [node]
     array = []
     until queue.empty?
-      current_node = queue.first
-      queue << current_node.left unless current_node.left.nil?
-      queue << current_node.right unless current_node.right.nil?
+      node = queue.first
+      queue << node.left unless node.left.nil?
+      queue << node.right unless node.right.nil?
       queue.shift
       if block_given?
-        yield(current_node)
+        yield(node)
       else
-        array << current_node.data
+        array << node.data
       end
     end
     array
