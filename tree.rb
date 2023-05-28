@@ -54,6 +54,10 @@ class Tree
       root.right = delete(value, root.right)
     elsif root.left.nil? && root.right.nil?
       root = nil
+    elsif root.left.nil?
+      root = root.right
+    elsif root.right.nil?
+      root = root.left
     end
     root
   end
