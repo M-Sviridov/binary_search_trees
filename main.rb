@@ -36,7 +36,7 @@ tree.pretty_print
 tree.delete(5)
 puts 'After deleting 5:'
 tree.pretty_print
-recursive level order
+# recursive level order
 puts 'Recursive level order: '
 tree.level_order_rec { |node| puts node.data unless node.nil? }
 p tree.level_order_rec
@@ -54,6 +54,11 @@ puts 'Postorder traversal: '
 tree.postorder { |node| puts node unless node.nil? }
 p tree.postorder
 node = tree.find(13)
-p node
+# p node
 puts tree.height(node)
 puts tree.depth(node)
+tree.insert(400)
+tree.insert(500)
+tree.insert(600)
+tree.pretty_print
+puts tree.balanced?
