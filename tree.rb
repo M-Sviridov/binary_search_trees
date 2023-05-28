@@ -79,6 +79,19 @@ class Tree
     end
   end
 
+  def level_order(node = @root)
+    return if node.nil?
+
+    queue = [node]
+    until queue.empty?
+      current_node = queue.first
+      queue << current_node.left unless current_node.left.nil?
+      queue << current_node.right unless current_node.right.nil?
+      queue.shift
+      yield(current_node)
+    end
+  end
+
   def pretty_print(node = @root, prefix = '', is_left = true) # rubocop:disable Style/OptionalBooleanParameter
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
