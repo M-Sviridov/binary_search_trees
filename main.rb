@@ -30,6 +30,9 @@ tree.pretty_print
 tree.delete(32)
 puts 'After deleting 32:'
 tree.pretty_print
-tree.delete(50)
-puts 'After deleting 50:'
+tree.delete(21)
+puts 'After deleting 21:'
+tree.pretty_print
+tree.delete(5)
+puts 'After deleting 5:'
 tree.pretty_print
