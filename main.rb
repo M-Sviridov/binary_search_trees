@@ -62,3 +62,6 @@ tree.insert(500)
 tree.insert(600)
 tree.pretty_print
 puts tree.balanced?
+tree.rebalance
+tree.pretty_print
+puts tree.balanced?
