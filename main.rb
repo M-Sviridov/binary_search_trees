@@ -36,3 +36,5 @@ tree.pretty_print
 tree.delete(5)
 puts 'After deleting 5:'
 tree.pretty_print
+puts tree.find(12)
+p tree.find(0)
