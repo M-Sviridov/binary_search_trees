@@ -61,6 +61,17 @@ class Tree
     node.data = next_node.data
   end
 
+  def find(value, node = @root)
+    return nil if node.nil?
+    return node if node.data == value
+
+    if value < node.data
+      node.left = find(value, node.left)
+    else
+      node.right = find(value, node.right)
+    end
+  end
+
   def pretty_print(node = @root, prefix = '', is_left = true) # rubocop:disable Style/OptionalBooleanParameter
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
