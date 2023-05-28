@@ -172,6 +172,12 @@ class Tree
     end
   end
 
+  def balanced?
+    return true if (height(root.left) - height(root.right)).abs <= 1
+
+    false
+  end
+
   def pretty_print(node = @root, prefix = '', is_left = true) # rubocop:disable Style/OptionalBooleanParameter
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
